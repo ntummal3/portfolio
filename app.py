@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_mail import Mail, Message
 import json
 import os
@@ -155,6 +155,11 @@ def contact():
         flash('Sorry, there was an error sending your message. Please try again later.', 'error')
     
     return redirect(url_for('home'))
+
+@app.route('/health')
+def health_check():
+    """Health check endpoint for uptime monitoring"""
+    return jsonify({"status": "healthy"}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True) 
