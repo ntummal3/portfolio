@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name _;  # Replace with your domain name when you have one
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    
+    location /static/ {
+        root /home/ubuntu/portfolio;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/portfolio/portfolio.sock;
+    }
+} 
