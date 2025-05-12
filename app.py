@@ -3,16 +3,27 @@ from flask_mail import Mail, Message
 import json
 import os
 from dotenv import load_dotenv
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()  # Load environment variables
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', os.urandom(24))
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', '').replace(' ', '')  # Remove any spaces from password
+
+# Mail settings
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.getenv('MAIL_PASSWORD', '').replace(' ', ''),
+    MAIL_DEFAULT_SENDER=os.getenv('MAIL_USERNAME')
+)
+
 mail = Mail(app)
 
 # Your data
@@ -112,10 +123,18 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
         
-        # Send email
+        logger.info(f"Attempting to send email from {email}")
+        
+        # Log mail configuration (without password)
+        logger.info(f"Mail Configuration: SERVER={app.config['MAIL_SERVER']}, "
+                   f"PORT={app.config['MAIL_PORT']}, "
+                   f"USERNAME={app.config['MAIL_USERNAME']}")
+        
+        # Create message
         msg = Message('New Contact Form Submission',
-                    sender=email,
-                    recipients=[portfolio_data['email']])
+                    sender=app.config['MAIL_USERNAME'],  # Use configured email as sender
+                    reply_to=email,  # Set reply-to as the form submitter's email
+                    recipients=[app.config['MAIL_USERNAME']])
         
         msg.body = f"""
         New message from your portfolio website:
@@ -126,9 +145,13 @@ def contact():
         {message}
         """
         
+        # Send email
         mail.send(msg)
+        logger.info("Email sent successfully")
         flash('Thank you for your message! I will get back to you soon.', 'success')
+        
     except Exception as e:
+        logger.error(f"Error sending email: {str(e)}")
         flash('Sorry, there was an error sending your message. Please try again later.', 'error')
     
     return redirect(url_for('home'))
