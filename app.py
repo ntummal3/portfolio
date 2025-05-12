@@ -1,7 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_mail import Mail, Message
 import json
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'your-email@gmail.com'  # You'll need to replace this
+app.config['MAIL_PASSWORD'] = 'your-app-password'     # You'll need to replace this
+mail = Mail(app)
 
 # Your data
 portfolio_data = {
@@ -10,6 +19,7 @@ portfolio_data = {
     "location": "Raleigh, NC",
     "email": "ntummal3@ncsu.edu",
     "linkedin": "www.linkedin.com/in/navyatej-tummala",
+    "bio": "I am a passionate Computer Science graduate student at NC State University with a strong foundation in AI/ML, full-stack development, and cloud technologies. With hands-on experience in developing AI-powered applications and a track record of optimizing systems, I bring a blend of theoretical knowledge and practical expertise to solve complex technical challenges. Currently seeking opportunities to leverage my skills in innovative tech environments.",
     "education": [
         {
             "school": "North Carolina State University",
@@ -94,8 +104,30 @@ def home():
 
 @app.route('/contact', methods=['POST'])
 def contact():
-    # Here you would typically handle the contact form submission
-    # For now, we'll just redirect back to the home page
+    try:
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        
+        # Send email
+        msg = Message('New Contact Form Submission',
+                    sender=email,
+                    recipients=[portfolio_data['email']])
+        
+        msg.body = f"""
+        New message from your portfolio website:
+        
+        From: {name} <{email}>
+        
+        Message:
+        {message}
+        """
+        
+        mail.send(msg)
+        flash('Thank you for your message! I will get back to you soon.', 'success')
+    except Exception as e:
+        flash('Sorry, there was an error sending your message. Please try again later.', 'error')
+    
     return redirect(url_for('home'))
 
 if __name__ == '__main__':

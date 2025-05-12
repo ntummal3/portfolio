@@ -35,8 +35,22 @@
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
             </div>
+            <div class="bio-section">
+                <p>{{ data.bio }}</p>
+            </div>
         </div>
     </section>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     <!-- Education Section -->
     <section class="section" id="education">
