@@ -1,12 +1,13 @@
 [Unit]
-Description=Portfolio Website
+Description=Gunicorn instance to serve portfolio website
 After=network.target
 
 [Service]
-User=ubuntu
-WorkingDirectory=/home/ubuntu/portfolio
-Environment="PATH=/home/ubuntu/portfolio/venv/bin"
-ExecStart=/home/ubuntu/portfolio/venv/bin/gunicorn --workers 4 --bind unix:portfolio.sock -m 007 wsgi:app
+User=ec2-user
+Group=nginx
+WorkingDirectory=/home/ec2-user/portfolio
+Environment="PATH=/home/ec2-user/portfolio/venv/bin"
+ExecStart=/home/ec2-user/portfolio/venv/bin/gunicorn --workers 4 --bind unix:portfolio.sock -m 007 app:app
 
 [Install]
 WantedBy=multi-user.target 

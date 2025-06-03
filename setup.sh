@@ -1,26 +1,25 @@
 #!/bin/bash
 
 # Update system
-sudo apt update
-sudo apt upgrade -y
+sudo yum update -y
 
-# Install required packages
-sudo apt install -y python3-pip python3-venv nginx
+# Install Python and development tools
+sudo yum install python3 python3-pip python3-devel nginx git -y
 
-# Create and activate virtual environment
+# Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
 
-# Install Python packages
+# Install dependencies
 pip install -r requirements.txt
+pip install gunicorn
 
 # Setup Nginx
-sudo cp nginx_config /etc/nginx/sites-available/portfolio
-sudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled
-sudo nginx -t
-sudo systemctl restart nginx
+sudo cp nginx_config /etc/nginx/conf.d/portfolio.conf
+sudo systemctl start nginx
+sudo systemctl enable nginx
 
-# Setup systemd service
+# Setup Gunicorn service
 sudo cp portfolio.service /etc/systemd/system/
 sudo systemctl start portfolio
 sudo systemctl enable portfolio
