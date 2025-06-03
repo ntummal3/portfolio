@@ -5,14 +5,17 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -22,22 +25,27 @@ jobs:
           pip install -r requirements.txt
           pip install jinja2
 
-      - name: Generate static site
+      - name: Create build directory
         run: |
           mkdir -p build
+          cp -r static/* build/
+          
+      - name: Generate static site
+        run: |
           python -c "
           from app import app, portfolio_data
           from flask import render_template
+          import os
+          
           with app.app_context():
               html = render_template('index.html', data=portfolio_data)
               with open('build/index.html', 'w') as f:
                   f.write(html)
           "
-          cp -r static build/
-          cp -r templates build/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build 
+          publish_dir: ./build
+          force_orphan: true 
