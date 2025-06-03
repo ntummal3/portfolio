@@ -234,6 +234,16 @@ body {
     color: white;
 }
 
+.tech-tag {
+    background: var(--secondary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    display: inline-block;
+}
+
 @media (max-width: 768px) {
     .nav-content {
         flex-direction: column;

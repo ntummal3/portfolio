@@ -1,20 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Test Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navyatej Tummala - Portfolio</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h1>Hello, this is a test page</h1>
-    <p>If you can see this, GitHub Pages is working!</p>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">NT</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <h1>Navyatej Tummala</h1>
+            <p>Graduate Student in Computer Science</p>
+            <p>Raleigh, NC | <a href="mailto:ntummal3@ncsu.edu" style="color: white;">ntummal3@ncsu.edu</a></p>
+            <div style="margin-top: 20px;">
+                <a href="https://www.linkedin.com/in/navyatej-tummala" target="_blank" class="btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+            <div class="bio-section">
+                <p>I am a passionate Computer Science graduate student at NC State University with a strong foundation in AI/ML, full-stack development, and cloud technologies. With hands-on experience in developing AI-powered applications and a track record of optimizing systems, I bring a blend of theoretical knowledge and practical expertise to solve complex technical challenges. Currently seeking opportunities to leverage my skills in innovative tech environments.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="education">
+        <div class="section-content">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Expected May 2026</div>
+                    <h3>North Carolina State University</h3>
+                    <p>Master of Computer Science - GPA: 3.95</p>
+                    <p><strong>Relevant Courses:</strong> Design and Analysis of Algorithms, Software Engineering, Automated Learning and Data Analysis, Neural Networks and Deep Learning, Computer Networks, Object Oriented Design & Development, Internet Protocols</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2020 - May 2024</div>
+                    <h3>GITAM University, Vizag, India</h3>
+                    <p>Bachelor of Technology in Computer Science and Engineering - GPA: 8/10</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="section-content">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C/C++</li>
+                        <li>JavaScript(TypeScript, Nest.js)</li>
+                        <li>Java</li>
+                        <li>React Native</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>Git</li>
+                        <li>GitLab</li>
+                        <li>Netconf</li>
+                        <li>Restconf</li>
+                        <li>GCP</li>
+                        <li>AWS</li>
+                        <li>Unix/Linux</li>
+                        <li>MySQL</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                        <li>CI/CD pipelines</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud Technologies</h3>
+                    <ul class="skill-list">
+                        <li>AWS (EC2, S3, RDS, EKS, Redis, Lambda)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>Pytorch</li>
+                        <li>Matplotlib</li>
+                        <li>OpenCV</li>
+                        <li>Flask</li>
+                        <li>MATLAB</li>
+                        <li>PowerBI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience">
+        <div class="section-content">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2023 – July 2023</div>
+                    <h3>AI/ML Intern</h3>
+                    <h4>Symbiosis Technologies, Vizag, India</h4>
+                    <ul>
+                        <li>Deployed a Python-based sentiment analysis system using Flask, cutting manual data-collection hours by 40%</li>
+                        <li>Utilized OpenCV in tandem with generative AI to capture and analyze image-based signals, improving project insights by 20%</li>
+                        <li>Leveraged MATLAB for predictive analytics to address public apprehensions, optimizing resolution speed by 25%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2023 – April 2024</div>
+                    <h3>Student Researcher</h3>
+                    <h4>GITAM University, Vizag, India</h4>
+                    <ul>
+                        <li>Employed Pandas and NumPy to preprocess thousands of daily financial news articles</li>
+                        <li>Harnessed PyTorch and Keras to design advanced NLP algorithms, boosting performance by 15%</li>
+                        <li>Built a Flask-based dashboard to visualize sentiment trends and trading signals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="section-content">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Adaptive HireSmart Platform</h3>
+                        <p>AI-powered recruitment platform leveraging machine learning</p>
+                        <div style="margin: 10px 0;">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">ReactJS</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <ul>
+                            <li>Developed an AI-powered recruitment platform as a college project</li>
+                            <li>Integrated real-time chat and video interview features</li>
+                            <li>Utilized Python for ML algorithms and AWS for deployment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Generative AI Based Drug Advisory Chatbot</h3>
+                        <p>Healthcare chatbot using advanced NLP</p>
+                        <div style="margin: 10px 0;">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <ul>
+                            <li>Designed and developed a Gen AI powered chatbot for healthcare</li>
+                            <li>Implemented NLP techniques for precise pharmaceutical details</li>
+                            <li>Presented at ICSSCGE 2024 with praise for forward-thinking approach</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Distributed Content Delivery Network</h3>
+                        <p>High-performance CDN implementation</p>
+                        <div style="margin: 10px 0;">
+                            <span class="tech-tag">CDN</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Kubernetes</span>
+                        </div>
+                        <ul>
+                            <li>Built a CDN for swift distribution of static content</li>
+                            <li>Employed Nginx for optimization and AWS for cloud hosting</li>
+                            <li>Achieved fault tolerance and seamless scalability with Kubernetes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-content">
+            <h2 class="section-title">Contact Me</h2>
+            <form class="contact-form" action="mailto:ntummal3@ncsu.edu" method="POST" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                document.querySelector('.navbar').style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            }
+        });
+    </script>
 </body>
 </html> 
